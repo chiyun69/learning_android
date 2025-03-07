@@ -1,13 +1,15 @@
-package com.czy.learning_lab2.features.account.ui.components
+package com.czy.learning_lab2.features.account.ui.components.account
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.QrCode2
 import androidx.compose.material3.Icon
@@ -18,6 +20,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -27,16 +30,23 @@ import com.czy.learning_lab2.features.account.domain.models.Account
 
 @Composable
 fun AccountHeader(
+    modifier: Modifier = Modifier,
     account: Account,
-    modifier: Modifier = Modifier
 ) {
-    Column(modifier = modifier.background(MaterialTheme.colorScheme.surfaceVariant)) {
+    Column(modifier = modifier.background(MaterialTheme.colorScheme.primaryContainer)) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, top = 16.dp)
         ) {
-            AccountIcon(iconName = account.icon)
+            Box(modifier = Modifier
+                .clip(CircleShape)
+                .background(MaterialTheme.colorScheme.inversePrimary)
+                .size(64.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                AccountIcon(modifier = Modifier.size(46.dp), iconName = account.icon)
+            }
 
             Column(
                 horizontalAlignment = Alignment.End,
@@ -57,7 +67,11 @@ fun AccountHeader(
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxWidth().padding(16.dp).fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+                .fillMaxWidth()
+                .padding(top = 8.dp)
         ) {
             Column {
                 Text(

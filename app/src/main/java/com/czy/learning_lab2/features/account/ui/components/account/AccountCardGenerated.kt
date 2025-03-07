@@ -1,4 +1,4 @@
-package com.czy.learning_lab2.features.account.ui.components
+package com.czy.learning_lab2.features.account.ui.components.account
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
