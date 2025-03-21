@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.czy.learning_lab2"
+    namespace = "com.czy.jetpack_compose"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.czy.learning_lab2"
+        applicationId = "com.czy.jetpack_compose"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
@@ -49,10 +49,11 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation("androidx.compose.ui:ui:1.5.4")
-    implementation("androidx.compose.material3:material3:1.1.2")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.5.4")
-    implementation("androidx.compose.material:material-icons-extended:1.5.4")
+    implementation(libs.ui)
+    implementation(libs.material3)
+    implementation(libs.ui.tooling.preview)
+    implementation(libs.androidx.material.icons.extended)
+    implementation(libs.androidx.navigation.compose)
     implementation(libs.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
