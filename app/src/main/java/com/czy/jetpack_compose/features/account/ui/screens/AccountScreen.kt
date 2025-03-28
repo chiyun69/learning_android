@@ -258,7 +258,7 @@ fun AccountStickyHeader(navController: NavController, account: Account , isHeade
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(end = 16.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
                     Text(text = account.accountNumber,
                         fontSize = 16.sp)

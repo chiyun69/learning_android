@@ -12,10 +12,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.czy.jetpack_compose.features.menu.domain.models.MenuOptionItem
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MenuSheet(navController: NavController, toggleMenuSheet: (show: Boolean) -> Unit) {
+fun MenuSheet(navController: NavController, toggleMenuSheet: (show: Boolean) -> Unit, onOptionClick: (option: MenuOptionItem) -> Unit = {}) {
     val sheetState = rememberModalBottomSheetState()
 
     ModalBottomSheet(
@@ -31,6 +32,11 @@ fun MenuSheet(navController: NavController, toggleMenuSheet: (show: Boolean) -> 
             fontWeight = FontWeight.Medium,
             modifier = Modifier.padding(12.dp).padding(bottom = 8.dp)
         )
-        MenuOptions()
+        MenuOptions(
+            onOptionClick = { option ->
+                toggleMenuSheet(false)
+                onOptionClick(option)
+            }
+        )
     }
 }

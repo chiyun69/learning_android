@@ -23,7 +23,7 @@ import com.czy.jetpack_compose.ui.theme.Learning_lab2Theme
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun MenuOptions() {
+fun MenuOptions(onOptionClick: (option: MenuOptionItem) -> Unit = {}) {
 
     val optionList = listOf(
         MenuOptionItem(title = "Transferir", icon = Icons.AutoMirrored.Outlined.SendToMobile),
@@ -46,7 +46,9 @@ fun MenuOptions() {
             .padding(4.dp)
 
         optionList.forEach { option ->
-            MenuOptionButton(option, itemModifier)
+            MenuOptionButton(option, itemModifier, onClick = {
+                onOptionClick(option)
+            })
         }
     }
 }

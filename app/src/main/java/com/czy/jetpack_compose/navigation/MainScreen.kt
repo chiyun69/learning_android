@@ -18,6 +18,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.ComposeNavigator
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.czy.jetpack_compose.features.efectivoMovil.ui.screens.EfectivoMovilScreen
+import com.czy.jetpack_compose.features.menu.domain.models.MenuOptionItem
 import com.czy.jetpack_compose.features.menu.ui.components.MenuSheet
 import com.czy.jetpack_compose.ui.theme.Learning_lab2Theme
 
@@ -28,6 +30,7 @@ fun MainScreen(
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
     var showMenuSheet by remember { mutableStateOf(false) }
+    var showEfectivoMovilSheet by remember { mutableStateOf(false) }
 
     val bottomNavItems = listOf(
         MenuItem.Dashboard,
@@ -38,6 +41,13 @@ fun MainScreen(
     )
 
     val showBottomBar = currentDestination?.route in bottomNavItems.map { it.route }
+
+    fun onOptionClick(option: MenuOptionItem) {
+        when (option.title) {
+            "Efectivo Móvil" -> showEfectivoMovilSheet = true
+        }
+
+    }
 
     Scaffold(
         bottomBar = {
@@ -67,7 +77,14 @@ fun MainScreen(
         }
 
         if (showMenuSheet) {
-            MenuSheet(navController, toggleMenuSheet = { showMenuSheet = it })
+            MenuSheet(navController, toggleMenuSheet = { showMenuSheet = it },
+                onOptionClick = {
+                    onOptionClick(it)
+                })
+        }
+
+        if (showEfectivoMovilSheet) {
+            EfectivoMovilScreen(navController, toggleMenuSheet = { showEfectivoMovilSheet = it })
         }
     }
 }
