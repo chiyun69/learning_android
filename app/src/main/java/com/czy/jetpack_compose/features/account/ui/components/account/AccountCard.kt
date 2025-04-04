@@ -26,7 +26,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.czy.jetpack_compose.features.account.domain.models.Account
-import com.czy.jetpack_compose.features.dashboard.ui.screens.DashboardScreenPreview
 import com.czy.jetpack_compose.ui.theme.Learning_lab2Theme
 
 @Composable
@@ -94,10 +93,4 @@ fun AccountCardPreview() {
             )
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun AccountCardPreview2(){
-    DashboardScreenPreview()
 }

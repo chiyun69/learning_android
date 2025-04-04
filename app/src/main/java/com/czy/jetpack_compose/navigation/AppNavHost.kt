@@ -11,14 +11,19 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.czy.jetpack_compose.features.account.ui.screens.AccountScreen
+import com.czy.jetpack_compose.features.account.ui.screens.AccountScreenViewModel
 import com.czy.jetpack_compose.features.dashboard.ui.screens.DashboardScreen
+import com.czy.jetpack_compose.features.dashboard.ui.screens.DashboardScreenViewModel
 
 @Composable
 fun AppNavHost(navController: NavHostController) {
@@ -45,7 +50,9 @@ fun AppNavHost(navController: NavHostController) {
             enterTransition = { slideInHorizontally() },
             exitTransition = { fadeOutAnim }
         ) {
-            DashboardScreen(navController)
+            val viewModel = hiltViewModel<DashboardScreenViewModel>()
+            val state by viewModel.state.collectAsStateWithLifecycle()
+            DashboardScreen(navController, state)
         }
         composable(
             route = MenuItem.Payments.route,
@@ -71,12 +78,15 @@ fun AppNavHost(navController: NavHostController) {
         }
 
         composable(
-            route = NavigationItem.Account.route + "/{accountId}",
+            route = NavigationItem.AccountNavigation.route + "/{accountId}",
             enterTransition = { animViewEnter },
             exitTransition = { fadeOutAnim }
         ) {
             val accountId = it.arguments?.getString("accountId") ?: ""
-            AccountScreen(navController, accountId)
+            val viewModel = hiltViewModel<AccountScreenViewModel>()
+            val state by viewModel.state.collectAsStateWithLifecycle()
+
+            AccountScreen(navController, accountId, state)
         }
     }
 }

@@ -30,181 +30,24 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.ComposeNavigator
 import androidx.navigation.compose.rememberNavController
 import com.czy.jetpack_compose.features.account.domain.models.Account
-import com.czy.jetpack_compose.features.account.domain.models.Movement
 import com.czy.jetpack_compose.features.account.ui.components.account.AccountHeader
 import com.czy.jetpack_compose.features.account.ui.components.movement.AccountMovementList
 import com.czy.jetpack_compose.ui.theme.Learning_lab2Theme
 
 @Composable
-fun AccountScreen(navController: NavController, accountId: String = "") {
+fun AccountScreen(
+    navController: NavController,
+    accountId: String = "",
+    state: AccountScreenState = AccountScreenState()
+) {
+
+    val movementList = state.movements
 
     // Dummy data
     val accountList = listOf(
         Account(id = "1", accountNumber = "1234567890", balance = 10000.00),
         Account(id = "2", accountNumber = "9876543210", balance = 5000.00),
         Account(id = "3", accountNumber = "4567890123", balance = 2500.00),
-    )
-    val movementList = listOf(
-        Movement(
-            "1",
-            "1234567890",
-            1000.00,
-            200.00,
-            "Transferencia Directa",
-            "Referencia 1",
-        ),
-        Movement(
-            "2",
-            "1234567890",
-            1000.00,
-            200.00,
-            "Pago de servicio",
-            "Referencia 1",
-            "Referencia 2",
-            "Referencia 3"
-        ),
-        Movement(
-            "3",
-            "1234567890",
-            1000.00,
-            200.00,
-            "Deposito en efectivo",
-            "Referencia 1",
-            "Referencia 2",
-        ),
-        Movement(
-            "1",
-            "1234567890",
-            1000.00,
-            200.00,
-            "Transferencia Directa",
-            "Referencia 1",
-            "Referencia 2",
-        ),
-        Movement(
-            "2",
-            "1234567890",
-            1000.00,
-            200.00,
-            "Pago de servicio",
-            "Referencia 1",
-        ),
-        Movement(
-            "3",
-            "1234567890",
-            1000.00,
-            200.00,
-            "Deposito en efectivo",
-            "Referencia 1",
-        ),
-        Movement(
-            "1",
-            "1234567890",
-            1000.00,
-            200.00,
-            "Transferencia Directa",
-            "Referencia 1",
-            "Referencia 2",
-        ),
-        Movement(
-            "2",
-            "1234567890",
-            1000.00,
-            200.00,
-            "Pago de servicio",
-            "Referencia 1",
-            "Referencia 2",
-            "Referencia 3"
-        ),
-        Movement(
-            "3",
-            "1234567890",
-            1000.00,
-            200.00,
-            "Deposito en efectivo",
-            "Referencia 1",
-            "Referencia 2",
-        ),
-        Movement(
-            "1",
-            "1234567890",
-            1000.00,
-            200.00,
-            "Transferencia Directa",
-            "Referencia 1",
-        ),
-        Movement(
-            "2",
-            "1234567890",
-            1000.00,
-            200.00,
-            "Pago de servicio",
-            "Referencia 1",
-            "Referencia 2",
-            "Referencia 3"
-        ),
-        Movement(
-            "3",
-            "1234567890",
-            1000.00,
-            200.00,
-            "Deposito en efectivo",
-            "Referencia 1",
-            "Referencia 2",
-        ),
-        Movement(
-            "1",
-            "1234567890",
-            1000.00,
-            200.00,
-            "Transferencia Directa",
-            "Referencia 1",
-            "Referencia 2",
-        ),
-        Movement(
-            "2",
-            "1234567890",
-            1000.00,
-            200.00,
-            "Pago de servicio",
-            "Referencia 1",
-        ),
-        Movement(
-            "3",
-            "1234567890",
-            1000.00,
-            200.00,
-            "Deposito en efectivo",
-            "Referencia 1",
-        ),
-        Movement(
-            "1",
-            "1234567890",
-            1000.00,
-            200.00,
-            "Transferencia Directa",
-            "Referencia 1",
-            "Referencia 2",
-        ),
-        Movement(
-            "2",
-            "1234567890",
-            1000.00,
-            200.00,
-            "Pago de servicio",
-            "Referencia 1",
-            "Referencia 2",
-            "Referencia 3"
-        ),
-        Movement(
-            "3",
-            "1234567890",
-            1000.00,
-            200.00,
-            "Deposito en efectivo",
-            "Referencia 1",
-            "Referencia 2",
-        ),
     )
 
     val listState = rememberLazyListState()

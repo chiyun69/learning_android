@@ -26,5 +26,5 @@ sealed class MenuItem(var route: String, val icon: ImageVector, var title: Strin
 }
 
 sealed class NavigationItem(var route: String) {
-    data object Account : NavigationItem(Screen.ACCOUNT.name)
+    data object AccountNavigation : NavigationItem(Screen.ACCOUNT.name)
 }
